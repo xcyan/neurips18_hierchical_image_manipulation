@@ -1,1 +1,2 @@
-mkdir datasets
+mkdir datasets/
+mkdir checkpoints/
