@@ -14,8 +14,14 @@ MT-VAE requires or works with
 ## Installing Dependency
 * Install [Pytorch](https://pytorch.org/)
   * Note: This implementation has been tested with [Pytorch 0.3.1](https://pytorch.org/get-started/previous-versions/).
+  ```
+  conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
+  ```
 * Install [TensorFlow](https://www.tensorflow.org/)
   * Note: This implementation has been tested with [TensorFlow 1.5](https://www.tensorflow.org/versions)
+  ```
+  pip install tensorflow-gpu==1.5
+  ```
 * Install [Python Dominate Library](https://pypi.org/project/dominate/)
   ```
   pip install dominate
