@@ -6,10 +6,9 @@ This is official Pytorh implementation of NeurIPS 2018 paper [Learning Hierarchi
 
 Please follow the instructions to run the code.
 
-## Requirements
-MT-VAE requires or works with
+## Prerequisites
 * Mac OS X or Linux
-* NVIDIA GPU (make sure your GPU has 12G+ memory)
+* NVIDIA GPU (make sure your GPU has 12G+ memory) + CUDA cuDNN
 
 ## Installing Dependencies
 * Install [Pytorch](https://pytorch.org/)
