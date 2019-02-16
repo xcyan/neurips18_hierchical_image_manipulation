@@ -56,13 +56,13 @@ TBD
 TBD
 
 
-## Training (Box-to-Layout Generator)
+## Training Box-to-Layout Generator
 * If you want to train the box-to-layout generator on Cityscape dataset, please run the following script (usually it takes a few hours using one GPU).
   ```
   bash scripts/train_box2mask_city.sh
   ```
 
-## Training (Layout-to-Image Generator)
+## Training Layout-to-Image Generator
 * If you want to train the layout-to-image generator on Cityscape dataset, please run the following script (usually it takes one day using one GPU).
   ```
   bash scripts/train_mask2image_city.sh
