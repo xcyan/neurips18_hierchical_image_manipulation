@@ -4,7 +4,7 @@ from box2mask_base_options import BoxToMaskOptions
 
 class BoxToMaskTrainOptions(BoxToMaskOptions):
     def initialize(self):
-        BoxToMaskTrainOptions.initialize(self)
+        BoxToMaskOptions.initialize(self)
         # for displays
         self.parser.add_argument('--display_freq', type=int, default=40, help='frequency of showing training results on screen')
         self.parser.add_argument('--print_freq', type=int, default=40, help='frequency of showing training results on console')

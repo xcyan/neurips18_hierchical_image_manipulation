@@ -16,9 +16,9 @@ class BoxToMaskTestOptions(BoxToMaskOptions):
         self.parser.add_argument('--gtdata_dir', type=str, default='gt_512p')
         self.isTrain = False
 
-class JointTestOptions(BaseOptions):
+class JointTestOptions(BoxToMaskOptions):
     def initialize(self):
-        BaseOptions.initialize(self)
+        BoxToMaskOptions.initialize(self)
         # Add general purpose arguments.
         self.parser.add_argument('--ntest', type=int, default=float('inf'))
         self.parser.add_arugment('--results_dir', type=str, default='results/')

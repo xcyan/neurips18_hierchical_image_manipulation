@@ -66,10 +66,10 @@ class GlobalGenerator(nn.Module):
         assert(n_blocks >= 0)
         super(GlobalGenerator, self).__init__()
         self.norm_layer = get_norm_layer(norm_layer)
-  self.use_output_gate = use_output_gate
+        self.use_output_gate = use_output_gate
         activation = nn.ReLU(True)
-  self.input_nc = input_nc
-  self.output_nc = output_nc
+        self.input_nc = input_nc
+        self.output_nc = output_nc
 
         model = [nn.ReflectionPad2d(3), nn.Conv2d(input_nc, ngf, kernel_size=7, padding=0), self.norm_layer(ngf), activation]
         ### downsample
@@ -93,12 +93,12 @@ class GlobalGenerator(nn.Module):
 
     def forward(self, input, mask=None):
         output = self.model(input)
-  if self.use_output_gate and not(mask is None):
-    img = input[:,self.input_nc-3:,:,:]
-    mask_output = mask.repeat(1, self.output_nc, 1, 1)
-    output = (1-mask_output)*img + mask_output*output
+        if self.use_output_gate and not(mask is None):
+            img = input[:,self.input_nc-3:,:,:]
+            mask_output = mask.repeat(1, self.output_nc, 1, 1)
+            output = (1-mask_output)*img + mask_output*output
 
-  return output
+        return output
 
 class GlobalTwoStreamGenerator(nn.Module):
     def __init__(self, input_nc, output_nc, ngf=64, n_downsampling=3, n_blocks=9, norm_layer='instance',
