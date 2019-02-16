@@ -29,7 +29,10 @@ MT-VAE requires or works with
 
 ## Data Preprocessing
 * Please run the following script that creates two folders ```checkpoints/``` and ```datasets/```.
-  ```bash setup.sh```
+  ```
+  bash setup.sh
+  ```
+
 TBD
 
 ## Inference using a Pre-trained Box-to-Layout Generator
