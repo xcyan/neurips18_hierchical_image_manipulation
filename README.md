@@ -18,7 +18,7 @@ MT-VAE requires or works with
   conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
   ```
 * Install [TensorFlow](https://www.tensorflow.org/)
-  * Note: This implementation has been tested with [TensorFlow 1.5](https://www.tensorflow.org/versions)
+  * Note: This implementation has been tested with [TensorFlow 1.5](https://www.tensorflow.org/versions).
   ```
   pip install tensorflow-gpu==1.5
   ```
