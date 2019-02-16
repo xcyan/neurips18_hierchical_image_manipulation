@@ -11,7 +11,7 @@ MT-VAE requires or works with
 * Mac OS X or Linux
 * NVIDIA GPU
 
-## Installing Dependency
+## Installing Dependencies
 * Install [Pytorch](https://pytorch.org/)
   * Note: This implementation has been tested with [Pytorch 0.3.1](https://pytorch.org/get-started/previous-versions/).
   ```
