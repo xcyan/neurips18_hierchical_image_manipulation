@@ -30,25 +30,56 @@ MT-VAE requires or works with
 ## Data Preprocessing
 TBD
 
+## Inference using a Pre-trained Box-to-Layout Generator
+* You can download the pre-trained box-to-layout models, please run the following scripts.
+  ```
+  bash scripts/download_pretrained_box2mask_city.sh
+  bash scripts/download_pretrained_box2mask_ade.sh
+  ```
+* Now, let us generate the manipulated layout from the pre-trained models. Please check the synthesized layouts under ```checkpoints/```.
+  ```
+  bash scripts/test_pretrained_box2mask_city.sh
+  ```
+
+## Inference using a Pre-trained Layout-to-Image Generator
+* You can download the pre-trained layout-to-image models, please run the following scripts.
+  ```
+  bash scripts/download_pretrained_mask2image_city.sh
+  bash scripts/download_pretrained_mask2image_ade.sh
+  ```
+* Now, let us generate the manipulated image from the pre-trained models. Please check the synthesized images under ```checkpoints/```.
+  ```
+  bash scripts/test_pretrained_mask2image_city.sh
+  ```
+
+## Joint Inference
+TBD
+
+
 ## Training (Box-to-Layout Generator)
 * If you want to train the box-to-layout generator on Cityscape dataset, please run the following script (usually it takes a few hours using one GPU).
   ```
   bash scripts/train_box2mask_city.sh
   ```
-* Alternatively, you can download the pre-trained box-to-layout model, please run the following script.
 
 ## Training (Layout-to-Image Generator)
 * If you want to train the layout-to-image generator on Cityscape dataset, please run the following script (usually it takes one day using one GPU).
   ```
   bash scripts/train_mask2image_city.sh
   ```
-* Alternatively, you can download the pre-trained box-to-layout model, please run the following script.
+  
+## Citation
+If you find this useful, please cite our work as follows:
+```
+@inproceedings{hong2018learning,
+  title={Learning hierarchical semantic image manipulation through structured representations},
+  author={Hong, Seunghoon and Yan, Xinchen and Huang, Thomas S and Lee, Honglak},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2713--2723},
+  year={2018}
+}
+```
 
-## Inference (Box-to-Layout Generator)
-TBD
-
-## Inference (Layout-to-Image Generator)
-TBD
-
-## Joint Inference
+## Acknowledgements
+We would like to thank the amazing developers and the open-sourcing community. Our implementation has especially been benefited from the following excellent repositories:
 TBD
