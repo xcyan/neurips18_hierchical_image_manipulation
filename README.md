@@ -28,6 +28,11 @@ MT-VAE requires or works with
   ```
 
 ## Data Preprocessing
+* Please run the following script that creates two folders ```checkpoints/``` and ```datasets/```.
+  ```
+  bash setup.sh
+  ```
+
 TBD
 
 ## Inference using a Pre-trained Box-to-Layout Generator
@@ -53,16 +58,18 @@ TBD
   ```
 
 ## Joint Inference
+<img src="https://aa501f67-a-62cb3a1a-s-sites.googlegroups.com/site/hierarchicalimagemanipulation/home/Figure_adaptive_generation_selected_7cols_bbox.png" width="800px" height="250px"/>
+
 TBD
 
 
-## Training (Box-to-Layout Generator)
+## Training Box-to-Layout Generator
 * If you want to train the box-to-layout generator on Cityscape dataset, please run the following script (usually it takes a few hours using one GPU).
   ```
   bash scripts/train_box2mask_city.sh
   ```
 
-## Training (Layout-to-Image Generator)
+## Training Layout-to-Image Generator
 * If you want to train the layout-to-image generator on Cityscape dataset, please run the following script (usually it takes one day using one GPU).
   ```
   bash scripts/train_mask2image_city.sh
