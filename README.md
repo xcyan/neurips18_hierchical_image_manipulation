@@ -32,6 +32,8 @@ MT-VAE requires or works with
   ```
   bash setup.sh
   ```
+* Please download the Cityscapes dataset from the [official website](https://www.cityscapes-dataset.com/) (registration required). After downloading, please put it under the ```datasets``` folder and run the following script.
+  ```python preprocess_city.py```
 
 TBD
 
