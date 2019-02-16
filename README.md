@@ -9,7 +9,7 @@ Please follow the instructions to run the code.
 ## Requirements
 MT-VAE requires or works with
 * Mac OS X or Linux
-* NVIDIA GPU
+* NVIDIA GPU (make sure your GPU has 12G+ memory)
 
 ## Installing Dependencies
 * Install [Pytorch](https://pytorch.org/)
@@ -27,3 +27,28 @@ MT-VAE requires or works with
   pip install dominate
   ```
 
+## Data Preprocessing
+TBD
+
+## Training (Box-to-Layout Generator)
+* If you want to train the box-to-layout generator on Cityscape dataset, please run the following script (usually it takes a few hours using one GPU).
+  ```
+  bash scripts/train_box2mask_city.sh
+  ```
+* Alternatively, you can download the pre-trained box-to-layout model, please run the following script.
+
+## Training (Layout-to-Image Generator)
+* If you want to train the layout-to-image generator on Cityscape dataset, please run the following script (usually it takes one day using one GPU).
+  ```
+  bash scripts/train_mask2image_city.sh
+  ```
+* Alternatively, you can download the pre-trained box-to-layout model, please run the following script.
+
+## Inference (Box-to-Layout Generator)
+TBD
+
+## Inference (Layout-to-Image Generator)
+TBD
+
+## Joint Inference
+TBD
