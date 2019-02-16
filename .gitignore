@@ -1,6 +1,7 @@
 # Folders
 datasets/
 checkpoints/
+scripts/.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
