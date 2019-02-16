@@ -53,6 +53,8 @@ TBD
   ```
 
 ## Joint Inference
+<img src="https://aa501f67-a-62cb3a1a-s-sites.googlegroups.com/site/hierarchicalimagemanipulation/home/Figure_adaptive_generation_selected_7cols_bbox.png" width="800px" height="250px"/>
+
 TBD
 
 
