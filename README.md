@@ -104,5 +104,5 @@ If you find this useful, please cite our work as follows:
 
 ## Acknowledgements
 We would like to thank the amazing developers and the open-sourcing community. Our implementation has especially been benefited from the following excellent repositories:
-[Pytorch CycleGAN and Pix2Pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
-[Pytorch Pix2PixHD](https://github.com/NVIDIA/pix2pixHD)
+* Pytorch CycleGAN and Pix2Pix: [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+* Pytorch Pix2PixHD: [https://github.com/NVIDIA/pix2pixHD](https://github.com/NVIDIA/pix2pixHD)
