@@ -31,10 +31,12 @@ Please follow the instructions to run the code.
   ```
   bash setup.sh
   ```
-* Please download the Cityscapes dataset from the [official website](https://www.cityscapes-dataset.com/) (registration required). After downloading, please put it under the ```datasets``` folder and run the following script.
+* Please download the Cityscapes dataset from the [official website](https://www.cityscapes-dataset.com/) (registration required). After downloading, please put these files under the ```datasets/cityscape/``` folder and run the following script.
   ```
   python preprocess_city.py
   ```
+
+* Please download the ADE20K dataset from the [official website](http://groups.csail.mit.edu/vision/datasets/ADE20K/). After downloading, please put these files under the ```datasets/ade20k/``` folder and run the following script.
 
 TBD
 
@@ -47,6 +49,7 @@ TBD
 * Now, let us generate the manipulated layout from the pre-trained models. Please check the synthesized layouts under ```checkpoints/```.
   ```
   bash scripts/test_pretrained_box2mask_city.sh
+  bash scripts/test_pretrained_box2mask_ade.sh
   ```
 
 ## Inference using a Pre-trained Layout-to-Image Generator
@@ -58,6 +61,7 @@ TBD
 * Now, let us generate the manipulated image from the pre-trained models. Please check the synthesized images under ```checkpoints/```.
   ```
   bash scripts/test_pretrained_mask2image_city.sh
+  bash scripts/test_pretrained_mask2image_ade.sh
   ```
 
 ## Joint Inference
@@ -71,11 +75,19 @@ TBD
   ```
   bash scripts/train_box2mask_city.sh
   ```
+* If you want to train the box-to-layout generator on ADE20K dataset, please run the following script (usually it takes a few hours using one GPU).
+  ```
+  bash scripts/train_box2mask_ade.sh
+  ```
 
 ## Training Layout-to-Image Generator
 * If you want to train the layout-to-image generator on Cityscape dataset, please run the following script (usually it takes one day using one GPU).
   ```
   bash scripts/train_mask2image_city.sh
+  ```
+* If you want to train the layout-to-image generator on ADE20K dataset, please run the following script (usually it takes one day using one GPU).
+  ```
+  bash scripts/train_mask2image_ade.sh
   ```
   
 ## Citation
@@ -92,4 +104,5 @@ If you find this useful, please cite our work as follows:
 
 ## Acknowledgements
 We would like to thank the amazing developers and the open-sourcing community. Our implementation has especially been benefited from the following excellent repositories:
-TBD
+[Pytorch CycleGAN and Pix2Pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+[Pytorch Pix2PixHD](https://github.com/NVIDIA/pix2pixHD)
