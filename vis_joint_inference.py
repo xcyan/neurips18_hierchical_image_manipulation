@@ -70,7 +70,7 @@ for i in range(data_loader.dataset_size):
 
   # Select bbox
   bbox_selected = joint_inference_model.sample_bbox(bboxs, opt_maskgen)
-  bbox_selected['cls']=opt_maskgen.label_nc-1
+  #bbox_selected['cls']=opt_maskgen.label_nc-1
   print(bbox_selected)
 
   print('generating layout...')
