@@ -1,5 +1,5 @@
 python vis_box2mask.py
---dataroot=datasets/cityscape/
+--dataroot datasets/cityscape/
 --dataloader cityscape
 --name pretrained_box2mask_city
 --prob_bg 0.1
