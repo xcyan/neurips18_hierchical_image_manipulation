@@ -5,10 +5,7 @@ from util.data_util import *
 import numpy as np
 from PIL import Image
 from data.base_dataset import get_transform_params, get_raw_transform_fn, \
-                              get_transform_fn, get_soft_bbox, get_masked_image
-from options.box2mask_test_options import BoxToMaskTestOptions as MaskGenTestOption
-from options.mask2image_test_options import MaskToImageTestOptions as ImgGenTestOption
-from models import create_model        
+                              get_transform_fn, get_soft_bbox, get_masked_image 
 from util.data_util import crop_canvas, paste_canvas
 
 class JointInference():
@@ -16,6 +13,8 @@ class JointInference():
         ###########################
         # Argument Parsing
         ###########################
+        from options.box2mask_test_options import BoxToMaskTestOptions as MaskGenTestOption
+        from options.mask2image_test_options import MaskToImageTestOptions as ImgGenTestOption
         self.opt_maskgen = load_script_to_opt(joint_opt.maskgen_script, MaskGenTestOption)
         self.opt_imggen = load_script_to_opt(joint_opt.imggen_script, ImgGenTestOption)
 
@@ -25,6 +24,7 @@ class JointInference():
         ###########################
         # Model Initialization 
         ###########################
+        from .models import create_model
         self.G_box2mask = create_model(self.opt_maskgen)
         self.G_mask2img = create_model(self.opt_imggen)
 

@@ -59,7 +59,6 @@ def load_script_to_opt(script_path, opt_class):
                 cmd = option[0].strip('--')
                 if hasattr(dummy_opt, cmd):
                     options += option[:-1]
-    
     opt = opt_class().parse(save=False, default_args=options)
     return opt
 

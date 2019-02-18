@@ -13,13 +13,13 @@ import util.util as util
 # Parse arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--maskgen_script', type=str,
-        default='scripts/vis_box2mask_city.sh',
+        default='scripts/test_pretrained_box2mask_city.sh',
         help='path to a test script for box2mask generator')
 parser.add_argument('--imggen_script', type=str,
-        default='scripts/vis_mask2image_city.sh',
+        default='scripts/test_pretrained_mask2image_city.sh',
         help='path to a test script for mask2img generator')
 parser.add_argument('--gpu_ids', type=int,
-        default=3,
+        default=0,
         help='path to a test script for mask2img generator')
 parser.add_argument('--how_many', type=int,
         default=50,
@@ -75,11 +75,11 @@ for i in range(data_loader.dataset_size):
 
   print('generating layout...')
   layout, layout_dict, _ = joint_inference_model.gen_layout(bbox_selected, label_orig, \
-      joint_inference_model.G_box2mask, opt_maskgen)
+      opt_maskgen) #joint_inference_model.G_box2mask, opt_maskgen)
 
   print('generating image...')
   image, test_dict, img_generated = joint_inference_model.gen_image(bbox_selected, img_orig, \
-      layout, joint_inference_model.G_mask2img, opt_pix2pix)
+      layout, opt_pix2pix) #joint_inference_model.G_mask2img, opt_pix2pix)
 
   visuals = OrderedDict([
     ('raw_label', util.tensor2label(label_orig[0], opt_maskgen.label_nc)),
