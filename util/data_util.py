@@ -1,4 +1,4 @@
-from PIL import Image 
+from PIL import Image
 import numpy as np
 import torch
 from data.base_dataset import get_transform_params, get_raw_transform_fn, \
@@ -50,7 +50,8 @@ def crop_canvas(bbox_sampled, label_original, opt, img_original=None, \
     output_dict['label'] = output_dict['label'].unsqueeze(0) # (1x1xHxW)
     output_dict['cls'] = torch.LongTensor([bbox_cls])
     if transform_img:
-        output_dict['image'] = output_dict['image'].unsqueeze(0)
+        output_dict['image'] = output_dict['image'].unsqueeze(0) * \
+                               (1-output_dict['mask_in']).repeat(1,3,1,1)
     #else:
 
     # Crop window
