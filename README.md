@@ -6,10 +6,9 @@ This is official Pytorh implementation of NeurIPS 2018 paper [Learning Hierarchi
 
 Please follow the instructions to run the code.
 
-## Requirements
-MT-VAE requires or works with
+## Prerequisites
 * Mac OS X or Linux
-* NVIDIA GPU (make sure your GPU has 12G+ memory)
+* NVIDIA GPU (make sure your GPU has 12G+ memory) + CUDA cuDNN
 
 ## Installing Dependencies
 * Install [Pytorch](https://pytorch.org/)
@@ -31,6 +30,10 @@ MT-VAE requires or works with
 * Please run the following script that creates two folders ```checkpoints/``` and ```datasets/```.
   ```
   bash setup.sh
+  ```
+* Please download the Cityscapes dataset from the [official website](https://www.cityscapes-dataset.com/) (registration required). After downloading, please put it under the ```datasets``` folder and run the following script.
+  ```
+  python preprocess_city.py
   ```
 
 TBD
