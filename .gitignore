@@ -1,6 +1,7 @@
 # Folders
 datasets/
 checkpoints/
+results/
 scripts/.*
 
 # Byte-compiled / optimized / DLL files
