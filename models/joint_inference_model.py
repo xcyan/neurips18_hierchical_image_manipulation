@@ -5,7 +5,7 @@ from util.data_util import *
 import numpy as np
 from PIL import Image
 from data.base_dataset import get_transform_params, get_raw_transform_fn, \
-                              get_transform_fn, get_soft_bbox, get_masked_image 
+                              get_transform_fn, get_soft_bbox, get_masked_image
 from util.data_util import crop_canvas, paste_canvas
 
 class JointInference():
@@ -22,7 +22,7 @@ class JointInference():
         self.opt_maskgen.gpu_ids = self.opt_imggen.gpu_ids = joint_opt.gpu_ids
 
         ###########################
-        # Model Initialization 
+        # Model Initialization
         ###########################
         from .models import create_model
         self.G_box2mask = create_model(self.opt_maskgen)
@@ -81,31 +81,20 @@ class JointInference():
         return label_canvas, input_dict, label_generated.data
 
     def gen_image(self, bbox_sampled, img_original, label_generated, opt):
-        if opt.name == 'pix2pixhd_cityscape_512p_noinstance':
-            # generate layout
-            img_generated = self.G_mask2img.inference(
-                Variable(label_generated, volatile=True),
-                Variable(torch.zeros_like(label_generated), volatile=True),
-                Variable(img_original[0], volatile=True)
-            )
+        # crop canvas
+        input_dict = crop_canvas(bbox_sampled, label_generated, opt, \
+            img_original=img_original, transform_img=True)
 
-            # None are placeholders to match return below
-            return img_generated.data, None, None
-        else:
-            # crop canvas
-            input_dict = crop_canvas(bbox_sampled, label_generated, opt, \
-                img_original=img_original, transform_img=True)
+        # generate layout
+        img_generated = self.G_mask2img.inference(
+            Variable(input_dict['label'], volatile=True),
+            Variable(torch.zeros_like(input_dict['label']), volatile=True),
+            Variable(input_dict['image'], volatile=True),
+            Variable(input_dict['mask_in'], volatile=True),
+            Variable(input_dict['mask_out'], volatile=True)
+        )
+        # paste canvas
+        img_canvas = paste_canvas(img_original, (img_generated.data+1)/2, \
+            input_dict, method=Image.BICUBIC, is_img=True)
 
-            # generate layout
-            img_generated = self.G_mask2img.inference(
-                Variable(input_dict['label'], volatile=True),
-                Variable(torch.zeros_like(input_dict['label']), volatile=True),
-                Variable(input_dict['image'], volatile=True),
-                Variable(input_dict['mask_in'], volatile=True),
-                Variable(input_dict['mask_out'], volatile=True)
-            )
-            # paste canvas
-            img_canvas = paste_canvas(img_original, (img_generated.data+1)/2, \
-                input_dict, method=Image.BICUBIC, is_img=True)
-
-            return img_canvas, input_dict, img_generated.data
+        return img_canvas, input_dict, img_generated.data
