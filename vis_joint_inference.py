@@ -70,17 +70,16 @@ for i in range(data_loader.dataset_size):
 
   # Select bbox
   bbox_selected = joint_inference_model.sample_bbox(bboxs, opt_maskgen)
-  #bbox_selected['cls']=opt_maskgen.label_nc-1
   print(bbox_selected)
 
   print('generating layout...')
-  layout, layout_dict, _ = joint_inference_model.gen_layout(bbox_selected, label_orig, \
-      opt_maskgen) #joint_inference_model.G_box2mask, opt_maskgen)
+  layout, layout_dict, _ = joint_inference_model.gen_layout(
+          bbox_selected, label_orig, opt_maskgen)
 
   print('generating image...')
-  image, test_dict, img_generated = joint_inference_model.gen_image(bbox_selected, img_orig, \
-      layout, opt_pix2pix) #joint_inference_model.G_mask2img, opt_pix2pix)
-
+  image, test_dict, img_generated = joint_inference_model.gen_image(
+          bbox_selected, img_orig, layout, opt_pix2pix)
+        
   visuals = OrderedDict([
     ('input_image_patch', util.tensor2im(test_dict['image'][0])),
     ('predicted_label_patch', util.tensor2label(test_dict['label'][0], opt_maskgen.label_nc)),
