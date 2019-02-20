@@ -28,7 +28,7 @@ webpage = html.HTML(web_dir, 'Experiment = %s, Phase = %s, Epoch = %s' % (opt.na
 for i, data in enumerate(dataset):
     if i >= opt.how_many:
         break
-    #generated = model.forward_wrapper(data, True) 
+
     generated = model.inference(
             label=Variable(data['label']),
             inst=Variable(data['inst']),
@@ -38,7 +38,7 @@ for i, data in enumerate(dataset):
             ) 
 
     visuals = model.get_current_visuals()
-    #img_path = data['path']
+
     print('process image... %s' % ('%05d'% i))
     visualizer.save_images(webpage, visuals, ['%05d' % i])
 
