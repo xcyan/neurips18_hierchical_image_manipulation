@@ -3,6 +3,9 @@ import imageio
 import os
 import scipy.io
 import scipy.misc
+import sys
+import time
+import warnings
 import numpy as np
 from shutil import copyfile
 
@@ -48,9 +51,9 @@ def loadAde20K(file):
     return ObjectClassMasks, ObjectInstanceMasks, objects
 
 if __name__ == '__main__':
-    ade_name = 'ade_name'
-    src_dir = 'datasets/'
-    save_dir = os.path.join(src_dir, ade_name) # out_name)
+    ade_name = 'ade20k'
+    src_dir = 'datasets'
+    save_dir = os.path.join(src_dir, ade_name)
     bbox_train_dir = 'train_bbox'
     bbox_val_dir = 'val_bbox'
     img_train_dir = 'train_img'
@@ -64,35 +67,40 @@ if __name__ == '__main__':
     label_suf = '_gtFine_labelIds.png'
     inst_suf = '_gtFine_instanceIds.png'
 
-    # if not os.path.exists(out_name):
-    #     os.makedirs(out_name)
     dir_names = [bbox_train_dir, bbox_val_dir, img_train_dir, img_val_dir,
         label_train_dir, label_val_dir, inst_train_dir, inst_val_dir]
     for dir_name in dir_names:
-        if not os.path.exists(dir_name):
-            os.makedirs(dir_name)
+        if not os.path.exists(os.path.join(save_dir, dir_name)):
+            os.makedirs(os.path.join(save_dir, dir_name))
 
-    index = scipy.io.loadmat('index_ade20k.mat')
+    index = scipy.io.loadmat(os.path.join(save_dir, 'index_ade20k.mat'))
     filenames = index['index'][0,0][0][0]
     folders = index['index'][0,0][1][0]
     obj_names = index['index'][0,0][6][0]
 
     ids = []
-    bedroom_name = 'ADE20K_2016_07_26/images/training/b/bedroom'
+    bedroom_name = 'images/training/b/bedroom'
 
-    for i, folder in enumerate(folders):     
-        if folder[0] == bedroom_name:
+    for i, folder in enumerate(folders):
+        if '/'.join(folder[0].split('/')[1:]) == bedroom_name:
             ids.append(i)
 
     count_val = 0
+    # Top 50 most occurring objects in the dataset
     sorted_50 = [2978,165,976,2684,1395,447,1735,3055,1869,687,689,774,471,350,491,
         1564,2178,236,2932,530,57,2985,1910,978,2243,1451,2982,266,894,2730,2329,
         2733,1981,2676,212,1702,724,2473,146,571,1930,206,2046,2850,249,2586,943,480]
 
+    # Progress bar
+    width = 55
+    sys.stdout.write("Progress: [%s]" % (" " * width))
+    sys.stdout.flush()
+    sys.stdout.write("\b" * (width+1))
 
     for i, id_ in enumerate(ids):
         folder = os.path.join(*folders[id_][0].split('/')[1:])
         filename = os.path.join(folder, filenames[id_][0])
+        filename = os.path.join(save_dir, filename)
         Om, Oi, objects = loadAde20K(filename)
         
         r, c = Oi.shape
@@ -143,7 +151,6 @@ if __name__ == '__main__':
                     'cls': name_id
                 }
 
-        img_path = os.path.join(src_dir, ade_name, filename)
         prefix = 'bedroom_%05d' % (i + 1)
         is_train = False
         if is_train or count_val >= 150:
@@ -167,7 +174,14 @@ if __name__ == '__main__':
             count_val += 1
         with open(bbox_file, 'w') as outfile:
             json.dump(bbox_data, outfile)
-        copyfile(img_path, img_file)
-        imageio.imwrite(lbl_path, fine_label.astype('double') / 255)
-        imageio.imwrite(ist_path, Oi.astype('double') / 255)
+        copyfile(filename, img_file)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            imageio.imwrite(lbl_path, fine_label.astype('double') / 255)
+            imageio.imwrite(ist_path, Oi.astype('double') / 255)
 
+        if (i+1) % 25 == 0:
+            sys.stdout.write("-")
+            sys.stdout.flush()
+
+    sys.stdout.write("\n")
