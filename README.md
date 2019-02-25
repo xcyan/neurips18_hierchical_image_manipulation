@@ -92,7 +92,10 @@ Please follow the instructions to run the code.
   ```
   bash scripts/train_mask2image_ade.sh
   ```
-  
+
+## Issue Tracker
+* If you have any question regarding our pytorch implementation, please feel free to submit an issue [here](https://github.com/xcyan/neurips18_hierchical_image_manipulation/issues). We will try to address your question as soon as possible. 
+
 ## Citation
 If you find this useful, please cite our work as follows:
 ```
@@ -109,3 +112,5 @@ If you find this useful, please cite our work as follows:
 We would like to thank the amazing developers and the open-sourcing community. Our implementation has especially been benefited from the following excellent repositories:
 * Pytorch CycleGAN and Pix2Pix: [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 * Pytorch Pix2PixHD: [https://github.com/NVIDIA/pix2pixHD](https://github.com/NVIDIA/pix2pixHD)
+* Torch ContextEncoder: [https://github.com/pathak22/context-encoder](https://github.com/pathak22/context-encoder)
+
