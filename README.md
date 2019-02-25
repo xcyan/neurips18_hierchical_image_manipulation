@@ -37,8 +37,9 @@ Please follow the instructions to run the code.
   ```
 
 * Please download the ADE20K dataset from the [official website](http://groups.csail.mit.edu/vision/datasets/ADE20K/). After downloading, please put these files under the ```datasets/ade20k/``` folder and run the following script.
-
-TBD
+  ```
+  python preprocess_ade.py
+  ```
 
 ## Inference using a Pre-trained Box-to-Layout Generator
 * You can download the pre-trained box-to-layout models, please run the following scripts.
