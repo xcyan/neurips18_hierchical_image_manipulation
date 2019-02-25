@@ -58,16 +58,16 @@ for i, data in enumerate(dataset):
         })
     generated_comb_label = generated['comb_pred_label']
     generated_obj_label = generated['obj_pred_label']
-    #
+
     visuals = OrderedDict([
         ('image', util.tensor2im(data['image'][0])),
         ('gt_label', util.tensor2label(data['label'][0], opt.label_nc)),
         ('input_context', util.tensor2label(data['mask_context_in'][0], opt.label_nc)),
         ('mask_in', util.tensor2im(data['mask_in'][0])),
         ('reconstructed_comb_label', util.tensor2label(reconstructed_comb_label.data[0], opt.label_nc)),
-        ('reconstructed_obj_label', util.tensor2im(reconstructed_obj_label.data[0])),
+        #('reconstructed_obj_label', util.tensor2im(reconstructed_obj_label.data[0])),
         ('generated_comb_label', util.tensor2label(generated_comb_label.data[0], opt.label_nc)),
-        ('generated_obj_label', util.tensor2im(generated_obj_label.data[0]))])
+        #('generated_obj_label', util.tensor2im(generated_obj_label.data[0]))])
     label_path = data['label_path']
     print('process image... %s' % label_path)
     visualizer.save_images(webpage, visuals, label_path)

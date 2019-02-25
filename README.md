@@ -67,8 +67,10 @@ TBD
 ## Joint Inference
 <img src="https://aa501f67-a-62cb3a1a-s-sites.googlegroups.com/site/hierarchicalimagemanipulation/home/Figure_adaptive_generation_selected_7cols_bbox.png" width="800px" height="250px"/>
 
-TBD
-
+* We provide a script to generate image using the predicted layout. Please check the synthesized images under ```results/``` folder.
+  ```
+  bash scripts/test_joint_inference_city.sh
+  ```
 
 ## Training Box-to-Layout Generator
 * If you want to train the box-to-layout generator on Cityscape dataset, please run the following script (usually it takes a few hours using one GPU).

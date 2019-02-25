@@ -70,32 +70,30 @@ for i in range(data_loader.dataset_size):
 
   # Select bbox
   bbox_selected = joint_inference_model.sample_bbox(bboxs, opt_maskgen)
-  bbox_selected['cls']=opt_maskgen.label_nc-1
   print(bbox_selected)
 
   print('generating layout...')
-  layout, layout_dict, _ = joint_inference_model.gen_layout(bbox_selected, label_orig, \
-      opt_maskgen) #joint_inference_model.G_box2mask, opt_maskgen)
+  layout, layout_dict, _ = joint_inference_model.gen_layout(
+          bbox_selected, label_orig, opt_maskgen)
 
   print('generating image...')
-  image, test_dict, img_generated = joint_inference_model.gen_image(bbox_selected, img_orig, \
-      layout, opt_pix2pix) #joint_inference_model.G_mask2img, opt_pix2pix)
-
+  image, test_dict, img_generated = joint_inference_model.gen_image(
+          bbox_selected, img_orig, layout, opt_pix2pix)
+        
   visuals = OrderedDict([
-    ('raw_label', util.tensor2label(label_orig[0], opt_maskgen.label_nc)),
-    ('generated_label', util.tensor2label(layout[0], opt_maskgen.label_nc)),
-    ('input_label', util.tensor2label(test_dict['label'][0], opt_maskgen.label_nc)),
-    ('input_image', util.tensor2im(test_dict['image'][0])),
-    ('input_mask', util.tensor2label(test_dict['mask_in'][0], 2)),
-    ('label_orig', util.tensor2label(layout_dict['label_orig'][0], opt_maskgen.label_nc)),
-    ('mask_ctx_in_orig', util.tensor2label(layout_dict['mask_ctx_in_orig'][0], opt_maskgen.label_nc)),
-    ('mask_out_orig', util.tensor2im(layout_dict['mask_out_orig'][0])),
-    ('gen_img_patch', util.tensor2im(img_generated[0])),
-    ('raw_img', util.tensor2im(img_orig[0], normalize=False)),
-    ('generated_img', util.tensor2im(image[0], normalize=False))
+    ('input_image_patch', util.tensor2im(test_dict['image'][0])),
+    ('predicted_label_patch', util.tensor2label(test_dict['label'][0], opt_maskgen.label_nc)),
+    ('predicted_image_patch', util.tensor2im(img_generated[0])),
+    #('input_mask', util.tensor2label(test_dict['mask_in'][0], 2)),
+    #('label_orig', util.tensor2label(layout_dict['label_orig'][0], opt_maskgen.label_nc)),
+    #('mask_ctx_in_orig', util.tensor2label(layout_dict['mask_ctx_in_orig'][0], opt_maskgen.label_nc)),
+    #('mask_out_orig', util.tensor2im(layout_dict['mask_out_orig'][0])),
+    ('GT_label_canvas', util.tensor2label(label_orig[0], opt_maskgen.label_nc)),
+    ('predicted_label_canvas', util.tensor2label(layout[0], opt_maskgen.label_nc)),
+    ('GT_image_canvas', util.tensor2im(img_orig[0], normalize=False)),
+    ('predicted_image_canvas', util.tensor2im(image[0], normalize=False))
   ])
   print('process image... %s' % ('%05d'% i))
   visualizer.save_images(webpage, visuals, ['%05d' % i])
 
 webpage.save()
-
