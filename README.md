@@ -4,6 +4,8 @@ This is official PyTorch implementation of NeurIPS 2018 paper [Learning Hierarch
 
 <img src="https://aa501f67-a-62cb3a1a-s-sites.googlegroups.com/site/hierarchicalimagemanipulation/home/Figure_intro_horizontal.png" width="800px" height="300px"/>
 
+<img src="https://sites.google.com/site/hierarchicalimagemanipulation/home/NeurIPS18_demo_3.gif?attredirects=0" width="800px" height="560px"/>
+
 Please follow the instructions to run the code.
 
 ## Prerequisites
